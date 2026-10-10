@@ -113,14 +113,16 @@ h2, h3, h4{
     left:.5rem;
     top:-6rem;
     z-index:20;
-    background:var(--paper);
-    color:var(--ink);
+    background:var(--background-color);
+    color:var(--main-text-color);
     padding:.75rem;
 }
 
 .skip-link:focus {
     top:.5rem;
 }
+
+
 
 .menu-button{
     background-color: var(--button-background);
@@ -205,11 +207,30 @@ legend{
     color: var(--main-text-color);
     padding: .25rem .5rem;
 }
-
 .seeds{
     display: flex;
-    padding: .25rem 0;
+    margin-left: 1em;
 }
+
+label{
+    padding: .5rem;
+    margin: .5rem .25rem;
+    border-left: .15rem solid transparent;
+    border-radius: var(--card-radius);
+    transition:
+    border 160ms ease-out,
+    background-color 160ms ease-out;
+}
+
+.seeds input[type="checkbox"]:checked + label{
+    border-left: .15rem solid var(--main-accent-color);
+    background-color: var(--success-background);
+}
+
+.seeds input[type="checkbox"]:focus-visible + label{
+    outline: 2px solid var(--focus);
+}
+
 
 input[type="email"], input[type="text"], textarea{
     width: 100%;
@@ -222,6 +243,8 @@ section{
     position: relative;
     overflow: hidden;
 }
+
+
 section > h1, section > p{
     position: relative;
     z-index: 2;
@@ -260,9 +283,9 @@ tbody tr:nth-child(even){
     overflow-x: auto;
 }
 
-.table-region:focus-visible{
+.table-region:focus{
     outline: .15rem solid var(--focus);
-    outline-offset: .2rem;
+    
 }
 figure{
     border: 1px solid;
@@ -328,6 +351,8 @@ input:user-invalid + span::before{
     color: var(--error);
 }
 
+
+
 button{
     background: linear-gradient(to top, var(--button-background), var(--surface-color));
     color: var(--button-text);
@@ -354,6 +379,17 @@ button:active{
     bottom: -2.5rem;
     left: -5rem;
     transform: rotate(-90deg)
+}
+
+#graphic{
+    --figure-bg: #a2c76f;
+    display: block;
+    margin: auto;
+}
+
+.graphictxt{
+    font-family: var(--heading-font-sub);
+    font-size: 1.55rem;
 }
 
 @media (min-width: 35rem){
