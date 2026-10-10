@@ -1,21 +1,110 @@
-:root {
-    --brand:#8c1d40;
-    --accent:#ffc627;
-    --ink:#191919;
-    --paper:#fff;
-    --surface:#f1f1f1;
-    --max:70rem;
-    --space:1rem; 
+@font-face {
+    font-family: 'LT Veritas Cond';
+    src: url('LTVeritas-BoldCondensed.woff2') format('woff2'),
+        url('LTVeritas-BoldCondensed.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'LT Veritas Med';
+    src: url('LTVeritas-Medium.woff2') format('woff2'),
+        url('LTVeritas-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+/* Providing a predictable basis for layout sizing and spacing */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Margin reset to allow for more control from author styling */
+body, h1, h2, h3, h4, p, figure{
+    margin: 0;
 }
 
-* {
-    box-sizing:border-box;
+/* Line height for better readability */
+body{
+    line-height: 1.5;
 }
-body {
-    margin:0;
-    color:var(--ink);
-    background:var(--paper);
-    font:1rem/1.5 Arial,sans-serif;
+
+/* Media Responsiveness */
+img, figure, svg{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Font inheritance for form elements */
+input, button, select{
+    font: inherit;
+}
+/* End of Selective Reset */
+
+/* Tokens */
+
+:root{
+    --background-color: #E4E5D2; /* Body Background Color */
+    --main-text-color: #000000; /* Main Text Color */
+    --main-accent-color: #274D0F; /* Main Accent Color (links, header, etc.) */
+    --text-secondary-color: #fefff3; /*Secondary Text Color in case of dark backgrounds */
+    --secondary-accent-color: #60633e; /* Secondary Accent Color */
+
+    --surface-color: #F8F8F8; /* Card Background Color */
+    --card-radius: 0.25rem; /* Card Border Radius */
+
+    --background-notice: #EEE6B1; /* Notice Background Color */
+    --border-notice: #998b70; /* Notice Border Color */
+
+    --button-background: #D4D6B7; /* Button Background Color */
+    --button-radius: .5rem; /* Button Border Radius */
+    --button-text-size: 1rem; /* Button Text Size */
+    --button-hover:  #e4e5c4; /* Button Background color on hover */
+    --button-text: #000000; /* Button Text Color */
+    --space: .75rem; /* Spacing token for padding */
+
+    --disabled-background: #E4E5D2; /* Disabled Button Background Color */
+    --disabled-text: #9d9d91; /* Disabled Button Text Color */
+    --focus: #317490;
+    --success-background: #b1e6b1;
+    --success: #1f9e1f;
+    --error-background: #ef946b;
+    --error-bg-light: #f9d6c5;
+    --error: #e9581f;
+    --heading-font-main: 'LT Veritas Cond', sans-serif; /* Heading (h1) Font */
+    --heading-font-sub: 'LT Veritas Cond', sans-serif; /* Sub Heading (h2, h3, h4) Font */
+    --body-font: 'LT Veritas Med', 'Arial', sans-serif; /* Body Font */
+}
+
+body{
+    background-color: var(--background-color);
+    font-family: var(--body-font);
+}
+
+.site-header{
+    background-color: var(--main-accent-color);
+    color: var(--text-secondary-color);
+    padding: 2rem;
+}
+
+.brand{
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+main{
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 .5rem;
+}
+h1{
+    font-family: var(--heading-font-main);
+    font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+}
+
+h2, h3, h4{
+    font-family: var(--heading-font-sub);
+    padding-top: 1rem;
 }
 
 .skip-link {
@@ -32,29 +121,17 @@ body {
     top:.5rem;
 }
 
-.site-header {
-    background:var(--brand);
-    color:var(--paper);
-    padding:var(--space);
-}
-
-.brand {
-    color:inherit;
-    font-size:1.25rem;
-    font-weight:700;
-}
-
-.menu-button {
-    background-color: var(--accent);
+.menu-button{
+    background-color: var(--button-background);
     padding: var(--space);
     font: inherit;
     font-weight: bold;
     border: none;
-    margin-top: .5rem;
+    border-radius: var(--button-radius);
 }
 
 .menu-button:hover{
-    outline: 1px solid var(--surface)
+    background-color: var(--button-hover);
 }
 
 .nav-list {
@@ -70,89 +147,104 @@ body {
     color:var(--paper);
     padding:.75rem;
     text-decoration:none;
+    outline: 1px solid transparent;
+    transition:
+    color 160ms ease-out,
+    background-color 160ms ease-out,
+    outline .5s ease-in-out,
+    outline-offset .5s ease-in-out;
 }
 
-/* Hover, focus, active, current page */
-a:hover{
-    text-decoration: underline;
+.nav-list a:active{
+    background-color: var(--surface-color);
+    color: var(--main-accent-color);
 }
 
-:focus-visible{
-    outline: 2px solid var(--accent);
+.nav-list a:hover, .nav-list a:focus-visible{
+    outline: 1px solid var(--surface-color);
     outline-offset: 2px;
 }
 
-a:active{
-    color: var(--accent);
-    border: 1px solid;
-}
-
-.nav-list a[aria-current = "page"]{
-    background-color: var(--surface);
-    color: var(--brand);
+.nav-list a[aria-current="page"]{
+    background-color: var(--surface-color);
+    color: var(--main-accent-color);
     font-weight: bold;
 }
 
-/* Hiding the collapsed list */
-.js .nav-list[data-open="false"] { display: none; }
-
-/* Expanding content above breakpoint */
-@media (min-width: 35rem) {
-    /* Hiding menu button */
-  .menu-button { display: none; }
-
-  /* Changing display of nav-list */
-  .nav-list,
-  .js .nav-list[data-open] { display: flex; }
-}
-main, footer {
-    width:min(100% - 2rem,var(--max));
-    margin-inline:auto;
-}
-
-main {
-    min-height:55vh;
-    padding-block:2rem;
-}
-
-/* Relative breakpoint */
-@media (min-width: 35rem){
-    .nav-list{
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .gallery{
-        grid-template-columns: 1fr 1fr;
-    }
-
-    #fig1{
-        grid-row-start: 1;
-        grid-row-end:3;
-    }
-}
-
-/* Figure styling etc*/
-#flowerlist{
-    margin-left: 2rem;
+legend{
+    font-family: var(--heading-font-sub);
     font-size: 1.25rem;
+}
+
+.seeds{
+    display: flex;
+    padding: .25rem 0;
+}
+
+input[type="email"], input[type="text"], textarea{
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid var(--main-accent-color);
+    border-radius: var(--card-radius);
+}
+
+.card{
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border: 1px solid var(--main-accent-color);
+    border-radius: var(--card-radius);
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead{
+    background-color: var(--main-accent-color);
+    color: var(--text-secondary-color);
+}
+
+th,td{
+    padding: .5rem;
+    border: 1px solid var(--main-accent-color);
+}
+
+tbody tr:nth-child(odd){
+    background-color: var(--surface-color);
+}
+tbody tr:nth-child(even){
+    --background-color: #edede2;
+    background-color: var(--background-color);
+}
+.table-region{
+    overflow-x: auto;
+}
+
+.table-region:focus-visible{
+    outline: .15rem solid var(--focus);
+    outline-offset: .2rem;
+}
+figure{
+    border: 1px solid;
+    background-color: var(--surface-color);
+    border-radius: .5rem;
+    padding: 1rem;
+    margin: 0;
+}
+
+#flowerlist{
+    max-width: 45rem;
+    margin: auto;
+    font-size: 1.25rem;
+    list-style-type: none;
 }
 
 #flowerlist li{
     padding: .5rem;
-}
-
-
-img, figure{
-    width: 100%;
-    display: block;
-}
-
-figure{
-    border: 1px solid;
-    border-radius: .5rem;
-    padding: 1rem;
-    margin: 0;
+    background: linear-gradient(to right, var(--surface-color), var(--background-color));
+    margin: .5rem auto;
+    border-left: .25rem solid var(--main-accent-color);
 }
 
 figcaption{
@@ -167,4 +259,22 @@ figcaption{
     gap: .5rem;
     max-width: 100%;
     margin: auto;
+}
+input:required:valid, input:user-valid{
+    background-color: var(--success-background);
+    border: 1px solid var(--success);
+}
+
+input:user-valid + span::before{
+    content: "✓";
+    color: var(--success);
+}
+input:user-invalid{
+    background-color: var(--error-bg-light);
+    border: 2px dashed var(--error);
+    --main-accent-color: var(--error);
+}
+input:user-invalid + span::before{
+    content: "✗";
+    color: var(--error);
 }
