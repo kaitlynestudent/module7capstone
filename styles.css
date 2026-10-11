@@ -184,16 +184,7 @@ h2, h3, h4{
 
 /* Expanding content above breakpoint */
 
-@media (min-width: 35rem) {
-    /* Hiding menu button */
 
-  .menu-button { display: none; }
-
-  /* Changing display of nav-list */
-
-  .nav-list,
-  .js .nav-list[data-open] { display: flex; }
-}
 legend{
     font-family: var(--heading-font-sub);
     font-size: 1.25rem;
@@ -447,6 +438,14 @@ details[open] .schedule{
 }
 
 @media (min-width: 35rem){
+        /* Hiding menu button */
+
+  .menu-button { display: none; }
+
+  /* Changing display of nav-list */
+
+  .nav-list,
+  .js .nav-list[data-open] { display: flex; }
     .nav-list{
         display: flex;
         justify-content: space-around;
