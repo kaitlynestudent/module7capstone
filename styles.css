@@ -245,9 +245,11 @@ input[type="email"], input[type="text"], textarea{
 
 section{
     position: relative;
-    overflow: hidden;
 }
 
+.welcome{
+    overflow: hidden;
+}
 
 section > h1, section > p{
     position: relative;
