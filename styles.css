@@ -105,7 +105,6 @@ h1{
 
 h2, h3, h4{
     font-family: var(--heading-font-sub);
-    padding-top: 1rem;
 }
 
 .skip-link {
@@ -120,6 +119,11 @@ h2, h3, h4{
 
 .skip-link:focus {
     top:.5rem;
+}
+
+:focus-visible{
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
 }
 
 
@@ -300,6 +304,7 @@ figure{
     margin: auto;
     font-size: 1.25rem;
     list-style-type: none;
+
 }
 
 #flowerlist li{
@@ -353,18 +358,46 @@ input:user-invalid + span::before{
 
 
 
-button{
+button, .action-button{
     background: linear-gradient(to top, var(--button-background), var(--surface-color));
     color: var(--button-text);
     font-size: var(--button-text-size);
+    border: .15rem solid var(--main-accent-color);
     border-radius: var(--button-radius);
 }
-button:hover{
+button:hover, .action-button:hover{
     background: linear-gradient(to top, var(--button-hover), var(--surface-color));
 }
 
-button:active{
+button:active, .action-button:active{
     background: linear-gradient(to top, #a1a387, var(--button-background));
+}
+
+button:disabled{
+    background-color: var(--disabled-background);
+    color: var(--disabled-text);
+    cursor: not-allowed;
+}
+
+.action-button{
+    display: inline-block;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    margin: 1rem 0;
+}
+
+.schedule{
+    background-color: var(--surface-color);
+    border-left: .25rem solid var(--surface-color);
+    padding: var(--space);
+    transition:
+    border .5s ease-out,
+    background-color .5s ease-out;
+}
+
+details[open] .schedule{
+    background-color: var(--error-bg-light);
+    border-left: .25rem solid var(--error);
 }
 
 .comb{
@@ -390,6 +423,25 @@ button:active{
 .graphictxt{
     font-family: var(--heading-font-sub);
     font-size: 1.55rem;
+}
+
+.shape-img{
+    width:min(8rem);
+    float: left;
+    margin: 0 1rem 1rem 0;
+}
+
+@supports (clip-path: circle()){
+    .shape-img{
+        clip-path: circle(40%);
+    }
+}
+
+@supports (shape-outside: circle()){
+    .shape-img{
+        float: left;
+        shape-outside: circle(40%);
+    }
 }
 
 @media (min-width: 35rem){
